@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "nenos-academy-shelter-app"
+version = "0.1.0"
+description = "Animal Shelter Dash App"
+authors = ["Alexandru Niculae <alexandru.niculae13@yahoo.com>"]
+readme = "README.md"
+packages = [{include = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pydantic = "^2.9.2"
+pytest = "^8.3.3"
+pylint = "^3.3.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
