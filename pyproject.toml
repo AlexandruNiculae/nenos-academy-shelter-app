@@ -11,6 +11,12 @@ python = "^3.10"
 pydantic = "^2.9.2"
 pytest = "^8.3.3"
 pylint = "^3.3.1"
+# required for sql:
+sqlalchemy = "^2.0.36"
+pymysql = "^1.1.1"
+# required for mongodb:
+bson = "^0.5.10"
+pymongo = "^4.10.1"
 
 
 [build-system]
