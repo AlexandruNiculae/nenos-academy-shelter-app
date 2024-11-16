@@ -1,4 +1,4 @@
 from sqlalchemy.orm import declarative_base
 
-# base class fro SQL objects
+# base class for SQL objects
 SQL_Base = declarative_base()

@@ -8,7 +8,7 @@ class PyObjectId(ObjectId):  # use this to have id-like columns in objects
         yield cls.validate
 
     @classmethod
-    def validate(cls, v):
+    def validate(cls, v):  # pylint: disable=missing-function-docstring
         if not ObjectId.is_valid(v):
             raise ValueError("Invalid ObjectId")
         return ObjectId(v)
