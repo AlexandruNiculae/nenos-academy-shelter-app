@@ -1,26 +1,31 @@
 import dash
+import dash_mantine_components as dmc
 from dash import html, dcc
-from dash_mantine_components import MantineProvider
 
 from src.web.callbacks import register_all_callbacks
 from src.web.components.header import Header
+from src.web.components.loading import Loading
 
 # Create the Dash app
 app = dash.Dash(__name__)
 app.title = "API Status Checker"
 
 # App layout
-app.layout = MantineProvider(
-    children=html.Div(
+app.layout = dmc.MantineProvider(
+    children=dmc.Stack(
         children=[
             # Header
             html.Div(
                 id='webapp-header',
                 children=Header("Shelter App").render()
             ),
+            dmc.Divider(variant="solid"),
             # Main content
             html.Div(
-                id='webapp-content'
+                id='webapp-content',
+                children=[
+                    Loading().render()
+                ]
             ),
             # Page refresh
             dcc.Interval(
