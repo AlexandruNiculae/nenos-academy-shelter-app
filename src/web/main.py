@@ -4,7 +4,8 @@ from dash import html, dcc
 
 from src.web.callbacks import register_all_callbacks
 from src.web.components.header import Header
-from src.web.components.loading import Loading
+# from src.web.components.loading import Loading
+from src.web.components.add_animal import AddAnimalComponent
 
 # Create the Dash app
 app = dash.Dash(__name__)
@@ -24,13 +25,14 @@ app.layout = dmc.MantineProvider(
             html.Div(
                 id='webapp-content',
                 children=[
-                    Loading().render()
+                    # Loading().render()
+                    AddAnimalComponent().render()
                 ]
             ),
             # Page refresh
             dcc.Interval(
                 id="webapp-refresh-timer",
-                interval=1 * 60 * 1000,  # 5 minutes in milliseconds
+                interval=1 * 60 * 1000,  # 1 minute in milliseconds
                 n_intervals=0,  # Number of times the interval has fired
             ),
         ]

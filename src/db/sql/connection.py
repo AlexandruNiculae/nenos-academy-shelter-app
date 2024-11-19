@@ -1,7 +1,6 @@
 import os
 import sqlalchemy
 from sqlalchemy.orm import Session, sessionmaker
-from typing import Generator
 
 from src.config import DBNAME
 
@@ -28,8 +27,8 @@ class SQLSesssion:
     def __init__(self):
         self._session = _SQL_SESSIONMAKER()
 
-    def __enter__(self) -> Generator[Session, None, None]:
-        yield self._session
+    def __enter__(self) -> Session:
+        return self._session
 
     def __exit__(self, *_) -> None:
         self._session.close()
