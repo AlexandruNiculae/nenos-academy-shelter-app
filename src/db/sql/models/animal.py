@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, Boolean
 
-from src.db.sql.models import SQL_Base
+from db.sql.models import SQL_Base
 
 
 class Animal(SQL_Base):  # inherit from sql base to make it an sql object and connect it to a table

@@ -2,7 +2,7 @@ import dash_mantine_components as dmc
 from dash_iconify import DashIconify
 from dash import html
 
-from src.web.components.base import DashAppBaseComponent
+from web.components.base import DashAppBaseComponent
 
 # check for icons here: https://icon-sets.iconify.design/
 

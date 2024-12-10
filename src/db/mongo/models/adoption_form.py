@@ -1,4 +1,4 @@
-from src.db.mongo.models import MongoBase
+from db.mongo.models import MongoBase
 
 class AdoptionForm(MongoBase):
     adopting_person_id: int

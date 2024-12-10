@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 
-from src.config import DBNAME
-from src.common.data_transfer_objects.api_status import APIStatusDto
+from config import DBNAME
+from common.data_transfer_objects.api_status import APIStatusDto
 
 
 router = APIRouter()

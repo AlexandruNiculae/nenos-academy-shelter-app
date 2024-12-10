@@ -1,6 +1,6 @@
 import dash_mantine_components as dmc
 
-from src.web.components.base import DashAppBaseComponent
+from web.components.base import DashAppBaseComponent
 
 
 class AddAnimalComponent(DashAppBaseComponent):

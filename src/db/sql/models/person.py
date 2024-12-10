@@ -1,6 +1,6 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, ForeignKey
 
-from src.db.sql.models import SQL_Base
+from db.sql.models import SQL_Base
 
 
 class Person(SQL_Base):

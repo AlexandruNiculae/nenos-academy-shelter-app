@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Response
 
-from src.common.data_transfer_objects.animals import AddAnimalDto
-from src.db.sql.queries.animals import add_animal_into_the_db
+from common.data_transfer_objects.animals import AddAnimalDto
+from db.sql.queries.animals import add_animal_into_the_db
 
 router = APIRouter()
 

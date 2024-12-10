@@ -1,9 +1,9 @@
 import uvicorn
 from fastapi import FastAPI
 
-from src.config import API_HOST, API_PORT
-from src.api.routers.status import router as status_router
-from src.api.routers.animals import router as animals_router
+from config import API_HOST, API_PORT
+from api.routers.status import router as status_router
+from api.routers.animals import router as animals_router
 
 
 # Create FastAPI app

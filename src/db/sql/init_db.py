@@ -1,5 +1,6 @@
-from src.db.sql.connection import SQL_ENGINE
-from src.db.sql.models import * # pylint: disable=wildcard-import, unused-wildcard-import
+from db.sql.connection import SQL_ENGINE
+from db.sql.models import * # pylint: disable=wildcard-import, unused-wildcard-import
+
 
 def init_sql_db() -> None:
     """

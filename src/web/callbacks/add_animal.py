@@ -5,8 +5,8 @@ from dash import callback_context
 from dash.exceptions import PreventUpdate
 from dash.dependencies import Input, Output
 
-from src.config import API_URL
-from src.common.data_transfer_objects.animals import AddAnimalDto
+from config import API_URL
+from common.data_transfer_objects.animals import AddAnimalDto
 
 
 

@@ -1,5 +1,5 @@
-from src.db.mongo.connection import MONGO_DB
-from src.db.mongo.models import * # pylint: disable=wildcard-import
+from db.mongo.connection import MONGO_DB
+from db.mongo.models import * # pylint: disable=wildcard-import
 
 _mongo_db_models = [
     AdoptionForm,

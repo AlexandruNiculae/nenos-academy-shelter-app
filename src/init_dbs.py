@@ -1,5 +1,5 @@
-from src.db.sql.init_db import init_sql_db
-from src.db.mongo.init_db import init_mongo_db
+from db.sql.init_db import init_sql_db
+from db.mongo.init_db import init_mongo_db
 
 
 if __name__ == "__main__":

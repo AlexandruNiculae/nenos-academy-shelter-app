@@ -1,7 +1,5 @@
-from src.db.sql.connection import SQLSesssion
-from src.db.sql.models import Animal
-
-
+from db.sql.connection import SQLSesssion
+from db.sql.models import Animal
 
 
 def add_animal_into_the_db(name: str, species: str, common_name: str, rescued: bool) -> None:

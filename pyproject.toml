@@ -15,8 +15,7 @@ pylint = "^3.3.1"
 sqlalchemy = "^2.0.36"
 pymysql = "^1.1.1"
 # required for mongodb:
-bson = "^0.5.10"
-pymongo = "^4.10.1"
+pymongo = {version = "^4.6", optional = false, extras = ["bson"]}
 # other imports
 fastapi = "^0.115.5"
 uvicorn = "^0.32.0"

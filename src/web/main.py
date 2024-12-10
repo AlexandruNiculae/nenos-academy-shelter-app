@@ -2,10 +2,10 @@ import dash
 import dash_mantine_components as dmc
 from dash import html, dcc
 
-from src.web.callbacks import register_all_callbacks
-from src.web.components.header import Header
-# from src.web.components.loading import Loading
-from src.web.components.add_animal import AddAnimalComponent
+from web.callbacks import register_all_callbacks
+from web.components.header import Header
+# from web.components.loading import Loading
+from web.components.add_animal import AddAnimalComponent
 
 # Create the Dash app
 app = dash.Dash(__name__)
@@ -27,7 +27,8 @@ app.layout = dmc.MantineProvider(
                 children=[
                     # Loading().render()
                     AddAnimalComponent().render()
-                ]
+                ],
+                # style={'display': "none"}
             ),
             # Page refresh
             dcc.Interval(

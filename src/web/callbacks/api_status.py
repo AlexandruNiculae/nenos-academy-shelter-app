@@ -3,9 +3,9 @@ from dash import Dash
 
 from dash.dependencies import Input, Output
 
-from src.config import API_URL, DBNAME
-from src.common.data_transfer_objects.api_status import APIStatusDto
-from src.web.components.api_status import (
+from config import API_URL, DBNAME
+from common.data_transfer_objects.api_status import APIStatusDto
+from web.components.api_status import (
     ApiStatusOK,
     ApiStatusNOK,
     ApiStatusError

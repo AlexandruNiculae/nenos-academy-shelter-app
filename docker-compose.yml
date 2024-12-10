@@ -1,0 +1,42 @@
+version: "3.9"
+
+services:
+  mongodb:
+    image: mongo:6.0
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    # environment:
+    #   MONGO_INITDB_ROOT_USERNAME: root
+    #   MONGO_INITDB_ROOT_PASSWORD: 123456
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: nenos_academy
+      MYSQL_USER: my_user
+      MYSQL_PASSWORD: my_password
+    volumes:
+      - mysql_data:/var/lib/mysql
+  
+  init_dbs:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: init_dbs
+    environment:
+      SQL_USER: root
+      SQL_PASSWORD: 123456
+    command: ["python3", "/app/src/init_dbs.py"]
+
+  
+
+volumes:
+  mongodb_data:
+  mysql_data:

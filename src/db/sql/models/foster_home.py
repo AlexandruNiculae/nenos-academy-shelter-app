@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String
 
-from src.db.sql.models import SQL_Base
+from db.sql.models import SQL_Base
 
 
 class FosterHome(SQL_Base):
