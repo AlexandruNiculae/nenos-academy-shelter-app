@@ -12,6 +12,10 @@ RUN poetry config virtualenvs.create false
 COPY poetry.lock pyproject.toml /app/
 RUN poetry install -n --no-root
 
+ENV PYTHONPATH="/app/src:${PYTHONPATH}"
+
+WORKDIR /app/src
+
 EXPOSE 8050
 EXPOSE 8080
-# ENTRYPOINT ["python3", "/app/src/main.py"]
+# ENTRYPOINT ["python3", "./api/main.py"]

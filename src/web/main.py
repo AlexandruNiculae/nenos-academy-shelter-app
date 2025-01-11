@@ -2,6 +2,7 @@ import dash
 import dash_mantine_components as dmc
 from dash import html, dcc
 
+from config import DASH_HOST, DASH_PORT
 from web.callbacks import register_all_callbacks
 from web.components.header import Header
 # from web.components.loading import Loading
@@ -45,4 +46,4 @@ register_all_callbacks(app)
 
 # Run the app
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host=DASH_HOST, port=str(DASH_PORT), debug=True)
