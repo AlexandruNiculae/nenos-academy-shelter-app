@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shelter-web
+  labels:
+    app: shelter-web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: shelter-web
+  template:
+    metadata:
+      labels:
+        app: shelter-web
+    spec:
+      containers:
+        - name: shelter-web
+          image: nenos-academy-shelter-app-web:latest
+          imagePullPolicy: Never # Use "Never" for local images
+          # command: ["sh", "-c", "your-start-command-here"]
+          command: ["python3", "/app/src/web/main.py"]
+          resources:
+            requests:
+              memory: "128Mi" # Minimum memory required
+              cpu: "250m"     # Minimum CPU required
+            limits:
+              memory: "512Mi" # Maximum memory allowed
+              cpu: "500m"     
+          ports:
+            - containerPort: 8050
+          env:
+          - name: SQL_USER
+            value: "root"
+          - name: SQL_PASSWORD
+            value: "123456"
+          - name: API_HOST
+            value: "shelter-api"
