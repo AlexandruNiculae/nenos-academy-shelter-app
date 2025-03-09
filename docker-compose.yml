@@ -64,6 +64,7 @@ services:
     environment:
       SQL_USER: root
       SQL_PASSWORD: 123456
+      API_HOST: shelter-api
     command: ["python3", "/app/src/web/main.py"]
 
   
