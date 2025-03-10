@@ -1,8 +1,7 @@
 import pymongo
 
-from config import DBNAME
+from config import DBNAME, MONGO_HOST
 
-MONGO_HOST = "mongodb"
 MONGO_PORT = "27017"
 MONGO_DBNAME = DBNAME
 

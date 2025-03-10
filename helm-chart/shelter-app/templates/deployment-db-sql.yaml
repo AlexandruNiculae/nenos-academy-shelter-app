@@ -1,0 +1,76 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "shelter-app.fullname" . }}-sql
+  labels:
+    {{- include "shelter-app.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.sql.autoscaling.enabled }}
+  replicas: {{ .Values.sql.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "shelter-app.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.sql.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "shelter-app.labels" . | nindent 8 }}
+        {{- with .Values.sql.podLabels }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+    spec:
+      {{- with .Values.sql.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      securityContext:
+        {{- toYaml .Values.sql.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.sql.securityContext | nindent 12 }}
+          image: "{{ .Values.sql.image.repository }}:{{ .Values.sql.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.sql.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.sql.service.port }}
+              protocol: TCP
+          env:
+          - name: MYSQL_ROOT_PASSWORD
+            value: {{ .Values.general.mysql_root_pass | quote }}
+          - name: MYSQL_DATABASE
+            value: {{ .Values.general.mysql_db_name }}
+          - name: MYSQL_USER
+            value: {{ .Values.general.mysql_username }}
+          - name: MYSQL_PASSWORD
+            value: {{ .Values.general.mysql_password }}
+          livenessProbe:
+            {{- toYaml .Values.sql.livenessProbe | nindent 12 }}
+          readinessProbe:
+            {{- toYaml .Values.sql.readinessProbe | nindent 12 }}
+          resources:
+            {{- toYaml .Values.sql.resources | nindent 12 }}
+          {{- with .Values.sql.volumeMounts }}
+          volumeMounts:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+      {{- with .Values.sql.volumes }}
+      volumes:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.sql.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.sql.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.sql.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

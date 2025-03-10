@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "shelter-app.fullname" . }}-mongo
+  labels:
+    {{- include "shelter-app.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.mongo.autoscaling.enabled }}
+  replicas: {{ .Values.mongo.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "shelter-app.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.mongo.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "shelter-app.labels" . | nindent 8 }}
+        {{- with .Values.mongo.podLabels }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+    spec:
+      {{- with .Values.mongo.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      securityContext:
+        {{- toYaml .Values.mongo.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.mongo.securityContext | nindent 12 }}
+          image: "{{ .Values.mongo.image.repository }}:{{ .Values.mongo.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.mongo.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.mongo.service.port }}
+              protocol: TCP
+          livenessProbe:
+            {{- toYaml .Values.mongo.livenessProbe | nindent 12 }}
+          readinessProbe:
+            {{- toYaml .Values.mongo.readinessProbe | nindent 12 }}
+          resources:
+            {{- toYaml .Values.mongo.resources | nindent 12 }}
+          {{- with .Values.mongo.volumeMounts }}
+          volumeMounts:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+      {{- with .Values.mongo.volumes }}
+      volumes:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.mongo.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.mongo.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.mongo.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

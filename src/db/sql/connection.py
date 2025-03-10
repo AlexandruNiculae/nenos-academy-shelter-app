@@ -2,11 +2,10 @@ import os
 import sqlalchemy
 from sqlalchemy.orm import Session, sessionmaker
 
-from config import DBNAME
+from config import SQL_HOST, DBNAME
 
 
 SQL_DRIVERS = "mysql+pymysql"
-SQL_HOST = "mysql"
 SQL_DBNAME = DBNAME
 
 def generate_sql_url() -> str:
