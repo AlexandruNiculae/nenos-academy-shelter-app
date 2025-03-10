@@ -5,6 +5,8 @@ WORKDIR /app
 
 RUN mkdir src
 COPY src src
+RUN mkdir test
+COPY test test
 
 RUN pip install poetry
 RUN poetry config virtualenvs.create false

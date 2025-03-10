@@ -26,7 +26,7 @@ jobs:
         run: docker build -t shelter-app .
 
       - name: Run linting with pylint
-        run: docker run --rm shelter-app pylint src
+        run: docker run --rm shelter-app pylint /app/src
 
       - name: Run tests with pytest
-        run: docker run --rm shelter-appp pytest test
+        run: docker run --rm shelter-app pytest /app/test
